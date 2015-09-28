@@ -1,5 +1,5 @@
 #Ion Auth ACL
-###A Handy Access Control List plug
+###A handy access control list plugin for Ion Auth 2
 by [Steve Goodwin](https://uk.linkedin.com/pub/steve-goodwin/11/979/91a)
 
 Ben Edmunds did an amazing job at putting together a secure and well documented authentication system called Ion Auth, further to this I required a plugin which would work with this library and provide a full ACL (Access Control List) which add's a full permissions based layer below users groups.
