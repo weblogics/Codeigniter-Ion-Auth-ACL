@@ -29,13 +29,11 @@ $config['tables']['group_permissions']      = 'groups_permissions';
 $config['tables']['users_permissions']      = 'users_permissions';
 
 /*
- | Users table column and Group table column you want to join WITH.
+ | Permissions table column and Users / Groups permissions table column's you want to join WITH.
  |
- | Joins from users.id
- | Joins from groups.id
+ | Joins from permissions.perm_id
  */
 $config['join']['permissions']  = 'perm_id';
-//$config['join']['groups'] = 'group_id';
 
 /*
  | -------------------------------------------------------------------------
