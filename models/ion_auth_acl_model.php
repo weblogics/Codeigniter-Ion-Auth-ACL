@@ -515,9 +515,14 @@ class Ion_auth_acl_model extends Ion_auth_model
     {
         $this->trigger_events('get_group_permissions');
 
+        //  Try to get the currently logged in users groups if none supplied
         if( ! $group_id )
             foreach($this->get_users_groups()->result() as $group)
                 $group_id[]     =   $group->id;
+
+        //  Still No groups then theres nothing to do!
+        if( ! $group_id )
+            return FALSE;
 
         if( is_array($group_id) )
             $this->db->where_in('group_id', $group_id);
