@@ -487,9 +487,13 @@ class Ion_auth_acl_model extends Ion_auth_model
         $this->trigger_events('pre_delete_group_permission');
 
         $this->db->trans_begin();
-
+        
         // remove permission from the group
-        if( ! $this->db->delete($this->tables['group_permissions'], array('group_id' => $group_id, 'perm_id' => $perm_id)) )
+        $this->db->delete($this->tables['group_permissions'], array('group_id' => $group_id, 'perm_id' => $perm_id));
+        
+        $this->db->trans_complete();
+        
+        if ($this->db->trans_status() === FALSE)
         {
             $this->trigger_events(array('post_delete_group_permission', 'post_delete_group_permission_unsuccessful'));
             $this->set_error('group_permission_delete_unsuccessful');
