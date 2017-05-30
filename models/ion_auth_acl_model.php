@@ -322,10 +322,10 @@ class Ion_auth_acl_model extends Ion_auth_model
      * @param int $value
      * @return bool
      */
-    public function add_permission_to_user($group_id = FALSE, $perm_id = FALSE, $value = 0)
+    public function add_permission_to_user($user_id = FALSE, $perm_id = FALSE, $value = 0)
     {
         // bail if the user id & permission id were not passed
-        if( ! $group_id)
+        if( ! $user_id)
         {
             $this->set_error('user_permissions_user_id_required');
             return FALSE;
@@ -337,7 +337,7 @@ class Ion_auth_acl_model extends Ion_auth_model
             return FALSE;
         }
 
-        $data   =   array('user_id' => $group_id, 'perm_id' => $perm_id);
+        $data   =   array('user_id' => $user_id, 'perm_id' => $perm_id);
 
         $existing_group_permission  =   $this->db->get_where($this->tables['users_permissions'], $data)->num_rows();
 
