@@ -356,6 +356,7 @@ class Ion_auth_acl_model extends Ion_auth_model
 
         if ($this->db->trans_status() === FALSE)
         {
+            $this->db->trans_rollback();
             $this->set_message('user_permission_add_unsuccessful');
             return FALSE;
         }
@@ -396,6 +397,7 @@ class Ion_auth_acl_model extends Ion_auth_model
         // remove permission from the user
         if( ! $this->db->delete($this->tables['users_permissions'], array('user_id' => $user_id, 'perm_id' => $perm_id)) )
         {
+            $this->db->trans_rollback();
             $this->trigger_events(array('post_delete_user_permission', 'post_delete_user_permission_unsuccessful'));
             $this->set_error('user_permission_delete_unsuccessful');
             return FALSE;
@@ -451,6 +453,7 @@ class Ion_auth_acl_model extends Ion_auth_model
 
         if ($this->db->trans_status() === FALSE)
         {
+            $this->db->trans_rollback();
             $this->set_message('group_permission_add_unsuccessful');
             return FALSE;
         }
@@ -495,6 +498,7 @@ class Ion_auth_acl_model extends Ion_auth_model
         
         if ($this->db->trans_status() === FALSE)
         {
+            $this->db->trans_rollback();
             $this->trigger_events(array('post_delete_group_permission', 'post_delete_group_permission_unsuccessful'));
             $this->set_error('group_permission_delete_unsuccessful');
             return FALSE;
