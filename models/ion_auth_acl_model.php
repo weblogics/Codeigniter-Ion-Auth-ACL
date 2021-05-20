@@ -404,6 +404,7 @@ class Ion_auth_acl_model extends Ion_auth_model
         }
         else
         {
+            $this->db->trans_commit();
             $this->trigger_events(array('post_delete_user_permission', 'post_delete_user_permission_successful'));
             $this->set_message('user_permission_delete_successful');
             return TRUE;
